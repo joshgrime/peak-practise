@@ -5,7 +5,7 @@ var connection = snowflake.createConnection({
     username: process.env.SNOWFLAKE_USERNAME,
     password: process.env.SNOWFLAKE_PASSWORD,
     application: process.env.SNOWFLAKE_APPLICATION
-  });
+});
 
 connection.connect( 
     function(err, conn) {
@@ -14,7 +14,6 @@ connection.connect(
             } 
         else {
             console.log('Successfully connected to Snowflake.');
-            // Optional: store the connection ID.
             connection_ID = conn.getId();
             makeQuery(connection_ID);
         }
@@ -23,7 +22,7 @@ connection.connect(
 
 function makeQuery(){
     connection.execute({
-    sqlText: `SELECT * from ${SNOWFLAKE_DATABASE}.STAGE.PRODUCTS_TABLE limit 100;`,
+    sqlText: `SELECT * from ${process.env.SNOWFLAKE_DATABASE}.STAGE.PRODUCTS_TABLE limit 100;`,
     complete: function(err, stmt, rows) {
         if (err) {
         console.error('Failed to execute statement due to the following error: ' + err.message);
