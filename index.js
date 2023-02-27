@@ -23,7 +23,7 @@ connection.connect(
 
 function makeQuery(){
     connection.execute({
-    sqlText: 'SELECT * from STAGE.PRODUCTS_TABLE limit 100;',
+    sqlText: `SELECT * from ${SNOWFLAKE_DATABASE}.STAGE.PRODUCTS_TABLE limit 100;`,
     complete: function(err, stmt, rows) {
         if (err) {
         console.error('Failed to execute statement due to the following error: ' + err.message);
