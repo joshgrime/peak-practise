@@ -1,1 +1,1 @@
-console.log(PROCESS.ENV)
+console.log(process.env)
